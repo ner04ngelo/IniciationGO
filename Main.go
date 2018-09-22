@@ -66,6 +66,11 @@ func main() {
 		fmt.Println(example)
 		fmt.Println(example2)*/
 
+		/*var simpleArray[2] int
+		simpleArray[0] = 1
+		simpleArray[1] = 2*/
+
+
 	imprimir()
 
 }
@@ -73,3 +78,13 @@ func main() {
 func imprimir() {
 	fmt.Println(variableLocal)
 }
+
+
+/*type Student struct{
+	name string
+	lastName string
+	age int
+	average float64
+	genre bool
+}*/
+
