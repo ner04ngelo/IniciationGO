@@ -1,90 +1,27 @@
 package main
 
-import "fmt"
-
-/// NOTA: En Go toda variable que se es declarada debe de ser utilizada
-/// de la misma forma sucede con los import sino se usa una libreria importada el compilador obliga a eliminarla
-
-var variableLocal = "Esto es una variable local"
+import (
+	"fmt"
+	"unsafe"
+)
 
 func main() {
-	/*
-		/// La libreria fmt es una abreviación de format, esta se usa para poder imprimir e ingresar datos
 
-		fmt.Println("Holixxx")
+/// Casting de variables
 
-		/// Para declarar una variable se usa la palabra reservada VAR, haciendo referencia que es una variable
-		/// después el nombre de la variable y por último el tipo
-		/// a diferencia de otros lenguajes de programación la declaración en GO es al revés
-		/// GO inicializa la variable con un valor por defecto
+/// En Go el casting tiene que ser de forma explicito ya que no funciona como lenguajes de alto nivel.
 
-		var numero int = 10
-		fmt.Println(numero)
+var entero8 uint8   // 1 byte
+var entero16 uint16 // 2 byte
+var entero32 uint32 // 4 byte
+var entero64 uint64 //8 byte
 
-		/// Para declarar una variable de manera rápida determinando el tipo de manera dinámica
-		/// una vez que la variable se le asigna una tipo este ya no se puede cambiar
-		/// el simbolo := solo se cuando se declara una nueva variable
+entero8=15
+entero32=230
 
-		nombre := "hola"
-
-		/// En GO se pueden declarar variables de forma consecutiva
-
-		nombre, numero = "Eduardo", 20
-
-		/// Esta forma de asignar valores a las variables de forma consecutiva puede resultar util al momento del intercambio
-		/// de valores entre variables
-
-		nombre= "Pedro"
-		name := "Juan"
-		nombre, name = name, nombre
-
-
-		fmt.Println("Nombre: ", nombre)
-		fmt.Println("Name: ", name)
-
-		/// Esta forma de asignación se puede usar también cuando se crea una nueva variable
-
-		nombre2, name := "Gloria", "Teresa"
-
-		fmt.Println("Nombre2: ", nombre2)
-		fmt.Println("Name: ", name)
-
-
-		///Para declarar multiples variables se usa var(), dentro de los parentesis se declaran las variables con sus asignaciones
-
-		var numero4 =70
-
-		fmt.Println(numero4)
-
-
-		var(
-			variable string
-			example, example2 = 1,2
-		)
-
-		fmt.Println(variable)
-		fmt.Println(example)
-		fmt.Println(example2)*/
-
-		/*var simpleArray[2] int
-		simpleArray[0] = 1
-		simpleArray[1] = 2*/
-
-
-	imprimir()
-
-}
-
-func imprimir() {
-	fmt.Println(variableLocal)
+fmt.Println(unsafe.Sizeof(entero8), unsafe.Sizeof(entero16), unsafe.Sizeof(entero32), unsafe.Sizeof(entero64))
 }
 
 
-/*type Student struct{
-	name string
-	lastName string
-	age int
-	average float64
-	genre bool
-}*/
+
 
