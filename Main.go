@@ -1,28 +1,22 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
+import "fmt"
 
 func main() {
 
-///String
+	var choice int8
 
+	fmt.Println("Ingresa un número")
+	fmt.Scanln(&choice)
 
-var stringExample string
+	switch choice {
+	case 1:
+		fmt.Println("Hoy lloverá")
+	case 2:
+		fmt.Println("No va a llover")
 
-stringExample= "Edad : "
-edad:=30
-
-fmt.Println(stringExample + strconv.Itoa(edad))
-
-i:=5
-
-	if i <= edad {
-		fmt.Println("Usted es menor de edad")
-	} else{
-		fmt.Println("Usted tiene 30 años")
+	default:
+		fmt.Println("Opción no disponible")
 	}
 
 }
