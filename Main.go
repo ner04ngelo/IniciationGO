@@ -4,19 +4,36 @@ import "fmt"
 
 func main() {
 
-	var choice int8
+	/*sliceExample := make([]byte, 4 , 10)
 
-	fmt.Println("Ingresa un número")
-	fmt.Scanln(&choice)
+	sliceExample = []byte{'H','O','L','A'}
 
-	switch choice {
-	case 1:
-		fmt.Println("Hoy lloverá")
-	case 2:
-		fmt.Println("No va a llover")
+	fmt.Println(sliceExample)
+	fmt.Printf("SliceExample: %q \n", sliceExample)*/
 
-	default:
-		fmt.Println("Opción no disponible")
+	/*var y []int
+
+	for i := 1; i < 13; i++ {
+		y = append(y, i)
+		fmt.Println("Array")
+		fmt.Println(y)
+		fmt.Printf("Longitud y: %d, Capacidad y: %d, Elementos y: %d \n", len(y), cap(y), i)
+	}*/
+
+/*	sliceOrigin := []int{1, 2, 3}
+	sliceDestiny := []int{4, 5}
+	copy(sliceDestiny, sliceOrigin)
+	fmt.Println(sliceOrigin, sliceDestiny)*/
+
+	objects := []string{
+		"Mesa",
+		"Silla",
+		"Ventilador",
+		"Licuadora",
 	}
 
+
+	for _, obj := range objects{
+		fmt.Printf("El objeto es %q \n", obj )
+	}
 }
