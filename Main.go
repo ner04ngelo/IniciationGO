@@ -20,20 +20,32 @@ func main() {
 		fmt.Printf("Longitud y: %d, Capacidad y: %d, Elementos y: %d \n", len(y), cap(y), i)
 	}*/
 
-/*	sliceOrigin := []int{1, 2, 3}
-	sliceDestiny := []int{4, 5}
-	copy(sliceDestiny, sliceOrigin)
-	fmt.Println(sliceOrigin, sliceDestiny)*/
+	/*	sliceOrigin := []int{1, 2, 3}
+		sliceDestiny := []int{4, 5}
+		copy(sliceDestiny, sliceOrigin)
+		fmt.Println(sliceOrigin, sliceDestiny)*/
+	/*
+		objects := []string{
+			"Mesa",
+			"Silla",
+			"Ventilador",
+			"Licuadora",
+		}
 
-	objects := []string{
-		"Mesa",
-		"Silla",
-		"Ventilador",
-		"Licuadora",
-	}
 
+		for _, obj := range objects{
+			fmt.Printf("El objeto es %q \n", obj )
+		}*/
 
-	for _, obj := range objects{
-		fmt.Printf("El objeto es %q \n", obj )
-	}
+	maps := make(map[string]string)
+	fmt.Println(maps)
+
+	mapExample := make(map[string]string, 2)
+	fmt.Println(mapExample)
+
+	maps["Nombre"] = "Paola"
+	maps["Edad"] = "20"
+
+	fmt.Println(maps["Nombre"])
+	fmt.Println(maps["Edad"])
 }
