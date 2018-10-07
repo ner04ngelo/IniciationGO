@@ -37,7 +37,7 @@ func main() {
 			fmt.Printf("El objeto es %q \n", obj )
 		}*/
 
-	maps := make(map[string]string)
+	/*maps := make(map[string]string)
 	fmt.Println(maps)
 
 	mapExample := make(map[string]string, 2)
@@ -47,5 +47,80 @@ func main() {
 	maps["Edad"] = "20"
 
 	fmt.Println(maps["Nombre"])
-	fmt.Println(maps["Edad"])
+	fmt.Println(maps["Edad"])*/
+
+	/*fmt.Println(printExample())*/
+
+	/*multi := multiplicar
+
+	fmt.Println(multi(1,2,3,4))*/
+
+	/*///Ejemplo de closure
+	result := 0
+	numbers := [...]int{
+		1,
+		2,
+		4,
+		5,
+		6,
+	}
+
+	suma := func() {
+		for _, numero := range numbers {
+			result += numero
+		}
+
+		fmt.Printf("La suma es : %d \n", result)
+	}
+
+	suma()
+
+	if suma != nil {
+		fmt.Println("Suma tiene implementación")
+	}*/
+
+	/*inc := incremementar()
+
+	fmt.Println("Valor de i: ", inc())
+	fmt.Println("Valor de i: ", inc())
+	fmt.Println("Valor de i: ", inc())
+	fmt.Println("Valor de i: ", inc())*/
+
+	n, v := retornoMultiple()
+
+	fmt.Printf("Número: %d , Cadena: %q ", n, v)
+
 }
+
+func retornoMultiple() (numero int, cadena string) {
+	numero = 1
+	cadena = "Hola"
+
+	return
+
+}
+
+/*func incremementar() func() int {
+	i := 0
+	return func() (r int) {
+		r = i
+		i += 2
+		return
+	}
+}*/
+
+/*func multiplicar(numbers ...int8) int {
+	result := 1
+
+	for _, number := range numbers {
+		result *= int(number)
+	}
+
+	return result
+}*/
+
+/*func printExample() (name string) {
+	name = "Jasson"
+	return
+
+}*/
