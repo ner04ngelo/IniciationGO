@@ -1,9 +1,11 @@
 package main
 
 import "fmt"
-
+import "./File"
+/// Crear un propio tipo
 type Money int
 
+///////////////
 func printExample() {
 	fmt.Println("Mundo")
 }
@@ -12,15 +14,35 @@ func pointerExample(c *int) {
 	*c += 100
 }
 
-func (d Money) String()string{
-	return fmt.Sprintf("$%d",d)
+func (d Money) String() string {
+	return fmt.Sprintf("$%d", d)
 }
+
+/// Crear una structura
+/*type Persona struct {
+	Nombre string
+	edad   int
+}*/
+
+
+
 func main() {
-	/// Crear un propio tipo
 
+	employee := File.Empleado{
+		Persona: File.Persona{
+			Nombre: "Manolo",
+			Edad: 40,
+		},
+		Puesto: "Contador",
+	}
 
+	fmt.Println(employee.Nombre)
+	fmt.Println(employee.Edad)
+	fmt.Println(employee.Puesto)
 
-
+	/*var p Persona
+	p.Nombre = "Jasson"
+	p.edad = 21*/
 
 	/*///Punteros
 
