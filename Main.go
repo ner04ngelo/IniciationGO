@@ -36,7 +36,9 @@ func main() {
 		Puesto: "Contador",
 	}
 
-	fmt.Println(employee.Nombre)
+	employee.SobreEscribirPuesto("Vendedor")
+
+	fmt.Println(employee.ImprimirPuesto())
 	fmt.Println(employee.Edad)
 	fmt.Println(employee.Puesto)
 
