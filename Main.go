@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-import "./File"
+
 /// Crear un propio tipo
 type Money int
 
@@ -25,10 +25,44 @@ func (d Money) String() string {
 }*/
 
 
+type Persona struct {
+	nombre string
+	edad int
+}
+
+func (p Persona) Nombre() string{
+	 return p.nombre
+}
+
+func (p Persona) Edad() int{
+	return p.edad
+}
+
+
+func Presentarse(p Usuario){
+	fmt.Printf(" Nombre: %s\n Edad: %d \n", p.Nombre(), p.Edad())
+}
+
+type Administrador struct {
+	Persona
+	Puesto string
+}
+
+type Usuario interface {
+	Nombre() string
+	Edad()  int
+}
 
 func main() {
 
-	employee := File.Empleado{
+	person := Persona{"Yoshiko", 20}
+
+	Presentarse(person)
+
+	admin := Administrador{Persona{"Yita", 35}, "Bases de datos"}
+
+	Presentarse(admin)
+	/*employee := File.Empleado{
 		Persona: File.Persona{
 			Nombre: "Manolo",
 			Edad: 40,
@@ -40,7 +74,7 @@ func main() {
 
 	fmt.Println(employee.ImprimirPuesto())
 	fmt.Println(employee.Edad)
-	fmt.Println(employee.Puesto)
+	fmt.Println(employee.Puesto)*/
 
 	/*var p Persona
 	p.Nombre = "Jasson"
