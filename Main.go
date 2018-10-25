@@ -1,267 +1,62 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"sync"
+	"time"
+)
 
-/// Crear un propio tipo
-type Money int
-
-///////////////
-func printExample() {
-	fmt.Println("Mundo")
-}
-
-func pointerExample(c *int) {
-	*c += 100
-}
-
-func (d Money) String() string {
-	return fmt.Sprintf("$%d", d)
-}
-
-/// Crear una structura
-/*type Persona struct {
-	Nombre string
-	edad   int
-}*/
-
-
-type Persona struct {
-	nombre string
-	edad int
-}
-
-func (p Persona) Nombre() string{
-	 return p.nombre
-}
-
-func (p Persona) Edad() int{
-	return p.edad
-}
-
-
-func Presentarse(p Usuario){
-	fmt.Printf(" Nombre: %s\n Edad: %d \n", p.Nombre(), p.Edad())
-}
-
-type Administrador struct {
-	Persona
-	Puesto string
-}
-
-type Usuario interface {
-	Nombre() string
-	Edad()  int
-}
+// wg es utilizado para indicarle al programa que debe esperar
+// que finalicen las gorutinas
+var wg sync.WaitGroup
 
 func main() {
 
-	person := Persona{"Yoshiko", 20}
 
-	Presentarse(person)
+	// Añadimos 2 a wg para que espero que finalicen 2 gorutinas.
+	wg.Add(2)
+	fmt.Println("Iniciamos las gorutinas...")
 
-	admin := Administrador{Persona{"Yita", 35}, "Bases de datos"}
+	go imprimirCantidad("A")
 
-	Presentarse(admin)
-	/*employee := File.Empleado{
-		Persona: File.Persona{
-			Nombre: "Manolo",
-			Edad: 40,
-		},
-		Puesto: "Contador",
-	}
+	go imprimirCantidad("B")
+	// Esperamos a que las gorutinas finalicen.
+	fmt.Println("Esperando que Finalicen...")
+	wg.Wait()
+	fmt.Println("\nTerminando el programa")
 
-	employee.SobreEscribirPuesto("Vendedor")
+	/*	go numbers()
+		go alphabets()
+		time.Sleep(3000 * time.Millisecond)
+		fmt.Println("main terminated")*/
 
-	fmt.Println(employee.ImprimirPuesto())
-	fmt.Println(employee.Edad)
-	fmt.Println(employee.Puesto)*/
-
-	/*var p Persona
-	p.Nombre = "Jasson"
-	p.edad = 21*/
-
-	/*///Punteros
-
-	a := 25
-	fmt.Println("Valor de a:", a)
-	fmt.Println("Dirección de memoria de a:", &a)
-
-	b := &a
-
-	fmt.Println("Valor de b:", b)
-	fmt.Println("B contiene: ", *b)
-
-
-
-	pointerExample(b)
-
-	fmt.Println("Valor de a:", a)
-	fmt.Println("B contiene: ", *b)*/
-
-	//defer multiplicar(1, 2, 5)
-	//printName()
-
-	//// Leer archivos
-
-	/*f, err := os.Open("/Users/USER/Desktop/texto.txt")
-
-	if err != nil {
-		panic(err)
-	}
-
-	data := make([]byte, 20)
-
-	c, err := f.Read(data)
-
-	if err != nil {
-		panic(err)
-	}
-
-	fmt.Printf(" Cantidad de bytes leidos: %d\n Texto leido: %q\n error: %v", c, data, err)
-
-	f.Close()*/
-	//defer printExample()
-	//fmt.Println("Hola")
-	//
-	//defer func() {
-	//	cadena := recover()
-	//	fmt.Println(cadena)
-	//}()
-	//panic("Error")
 
 }
 
-/*func multiplicar(numbers ...int8) {
-	result := 1
 
-	for _, number := range numbers {
-		result *= int(number)
+func imprimirCantidad(etiqueta string) {
+	// Llamamos la funcion Done() de wg para indicale que la gorutina termino.
+	defer wg.Done()
+	// Espera aleatoria
+	for cantidad := 1; cantidad <= 10; cantidad++ {
+		sleep := rand.Int63n(1000)
+		time.Sleep(time.Duration(sleep) * time.Millisecond)
+		fmt.Printf("Cantidad: %d de %s\n", cantidad, etiqueta)
+
 	}
+}
 
-	fmt.Println(result)
-}*/
 
-/*func printName() {
-	fmt.Println("Ejemplo de defer")
-}*/
-
-//func main() {
-//
-//	//sliceExample := make([]byte, 4 , 10)
-//	//
-//	//sliceExample = []byte{'H','O','L','A'}
-//	//
-//	//fmt.Println(sliceExample)
-//	//fmt.Printf("SliceExample: %q \n", sliceExample)*/
-//	//
-//	///*var y []int
-//	//
-//	//for i := 1; i < 13; i++ {
-//	//	y = append(y, i)
-//	//	fmt.Println("Array")
-//	//	fmt.Println(y)
-//	//	fmt.Printf("Longitud y: %d, Capacidad y: %d, Elementos y: %d \n", len(y), cap(y), i)
-//	//}*/
-//	//
-//	///*	sliceOrigin := []int{1, 2, 3}
-//	//	sliceDestiny := []int{4, 5}
-//	//	copy(sliceDestiny, sliceOrigin)
-//	//	fmt.Println(sliceOrigin, sliceDestiny)*/
-//	///*
-//	//	objects := []string{
-//	//		"Mesa",
-//	//		"Silla",
-//	//		"Ventilador",
-//	//		"Licuadora",
-//	//	}
-//	//
-//	//
-//	//	for _, obj := range objects{
-//	//		fmt.Printf("El objeto es %q \n", obj )
-//	//	}*/
-//	//
-//	///*maps := make(map[string]string)
-//	//fmt.Println(maps)
-//	//
-//	//dias := map[int]string{
-//	// 1: "Lunes",
-//	// 2: "Martes",
-//	// 3: "Miercoles",
-//	//}
-//	//
-//	//fmt.Println(dias)
-//	//
-//	//mapExample := make(map[string]string, 2)
-//	//fmt.Println(mapExample)
-//	//
-//	//maps["Nombre"] = "Paola"
-//	//maps["Edad"] = "20"
-//	//
-//	//fmt.Println(maps["Nombre"])
-//	//fmt.Println(maps["Edad"])*/
-//	//
-//	///*fmt.Println(printExample())*/
-//	//
-//	///*multi := multiplicar
-//	//
-//	//fmt.Println(multi(1,2,3,4))*/
-//	//
-//	///*///Ejemplo de closure
-//	//result := 0
-//	//numbers := [...]int{
-//	//	1,
-//	//	2,
-//	//	4,
-//	//	5,
-//	//	6,
-//	//}
-//	//
-//	//suma := func() {
-//	//	for _, numero := range numbers {
-//	//		result += numero
-//	//	}
-//	//
-//	//	fmt.Printf("La suma es : %d \n", result)
-//	//}
-//	//
-//	//suma()
-//	//
-//	//if suma != nil {
-//	//	fmt.Println("Suma tiene implementación")
-//	//}*/
-//	//
-//	///*inc := incremementar()
-//	//
-//	//fmt.Println("Valor de i: ", inc())
-//	//fmt.Println("Valor de i: ", inc())
-//	//fmt.Println("Valor de i: ", inc())
-//	//fmt.Println("Valor de i: ", inc())*/
-//	//
-//	///*n, v := retornoMultiple()
-//	//
-//	//fmt.Printf("Número: %d , Cadena: %q ", n, v)
-//
-//}
-
-/*func retornoMultiple() (numero int, cadena string) {
-	numero = 1
-	cadena = "Hola"
-
-	return
-
-}*/
-
-/*func incremementar() func() int {
-	i := 0
-	return func() (r int) {
-		r = i
-		i += 2
-		return
+/*func numbers() {
+	for i := 1; i <= 5; i++ {
+		time.Sleep(250 * time.Millisecond)
+		fmt.Printf("%d ", i)
 	}
-}*/
-
-/*func printExample() (name string) {
-	name = "Jasson"
-	return
-
+}
+func alphabets() {
+	for i := 'a'; i <= 'e'; i++ {
+		time.Sleep(400 * time.Millisecond)
+		fmt.Printf("%c ", i)
+	}
 }*/
