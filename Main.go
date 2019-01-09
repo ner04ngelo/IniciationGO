@@ -4,33 +4,42 @@ import (
 	"fmt"
 	"time"
 )
+func Generarnumero(out chan <- int) {
+	for x := 0; x < 5 ; x++  {
+		out <- x
+	}
+	close(out)
 
-///Ejemplo de Unbuffered Channel
+}
+
+func Elevarcuadrado(in <- chan int, out chan <- int) {
+	for x := range in {
+		out <- x * x
+	}
+	close(out)
+}
+
+func Imprimirnumeros (in chan int ){
+	for x := range in{
+		fmt.Println(x)
+		time.Sleep(1 * time.Second)
+	}
+}
+
 func main() {
 	numero := make(chan int)
 	cuadrado := make(chan int)
 
 	//Se generan los numeros
 
-	go func() {
-		for x := 0; ; x++  {
-			numero <- x
-		}
-	}()
+	go Generarnumero(numero)
 
 	// Elevamos al cuadrado
 
-	go func() {
-		for {
-			x := <- numero
-			cuadrado <- x * x
-		}
-	}()
+	go Elevarcuadrado(numero,cuadrado)
 
 	//Imprimimos en main
 
-	for {
-		fmt.Println(<-cuadrado)
-		time.Sleep(1 * time.Second)
-	}
+	Imprimirnumeros(cuadrado)
+
 }
